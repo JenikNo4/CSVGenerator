@@ -6,7 +6,6 @@
     <artifactId>CSVGenerator</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>CSVGenerator</name>
 
     <properties>
@@ -32,13 +31,23 @@
     <build>
         <finalName>CSVGenerator</finalName>
         <plugins>
-
-            <!-- other Maven plugins ... -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.coleman.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.3.0</version>
 
                 <configuration>
                     <descriptorRefs>
@@ -46,6 +55,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
                             <mainClass>com.coleman.Main</mainClass>
                         </manifest>
                     </archive>
@@ -53,7 +63,7 @@
 
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
+                        <id>assemble-all</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
