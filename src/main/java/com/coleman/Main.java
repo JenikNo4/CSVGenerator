@@ -22,13 +22,14 @@ import static net.andreinc.mockneat.unit.user.Names.names;
  * Hello world!
  *
  */
-public class App
+public class Main
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        System.out.println("First Name, Last Name, Email, Site, IP, Credit Card, Date");
-
+        Integer rows = 1000;
+        if (args.length != 0){
+            rows = Integer.parseInt(args[0]);
+        }
         csvs()
                 .column(names().first())
                 .column(names().last())
@@ -43,7 +44,7 @@ public class App
                 .column(regex("\\d{3} \\s{6} \\d{4}"))
                 .separator(", ")
 //                .accumulate(25, "\n")
-                .write("filename1.csv", 1000);
+                .write("filename1.csv", rows);
 //                .consume(System.out::println);
 
     }
